@@ -80,15 +80,16 @@ class DQN:
 if __name__ == '__main__':
     env = gym.make("Assault-ram-v0")
 
-    trials = 100
+    trials = 50
     trial_len = 3000
     dqn_agent = DQN(env=env)
+    life_spans = []
     steps = []
     for trial in range(trials):
         cur_state = env.reset().reshape((1, 128))
         for step in tqdm(range(trial_len), desc=f"Trail {trial}: {1 - dqn_agent.epsilon:3.2%} AI Operated"):
             action = dqn_agent.act()
-            env.render()
+            # env.render()
 
             new_state, reward, done, _ = env.step(action)
             reward = reward if not done else -200
@@ -98,7 +99,10 @@ if __name__ == '__main__':
             dqn_agent.replay()
             dqn_agent.frame_memory.append(new_state)
             if done:
+                life_spans.append(step)
                 dqn_agent.frame_memory.clear()
                 break
 
+
+    np.save("lifespans.npy", np.array(life_spans))
     dqn_agent.model.save("model")
