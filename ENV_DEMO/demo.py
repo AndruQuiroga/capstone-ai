@@ -11,10 +11,6 @@ env = gym.make("BattleZone-v0")
 print(env.action_space)
 
 
-
-
-
-
 env.reset()
 train_step_counter = tf.Variable(0)
 
