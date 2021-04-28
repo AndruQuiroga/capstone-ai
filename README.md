@@ -22,6 +22,7 @@ DQN requires:
 tensorflow==2.4.0
 tqdm>=4.60.0
 gym
+tqdm
 
 
 Which can be installed by:
@@ -29,6 +30,7 @@ Which can be installed by:
 pip install tensorflow==2.4.0
 pip install tqdm==4.60.0
 pip install gym
+pip install tqdm
 ```
 
 
